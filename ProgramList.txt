@@ -1,0 +1,6 @@
+Program.txt 0
+Program1.txt 0
+AddProg.txt 5
+DecrementProg.txt 28
+IncrementProg.txt 50
+Prog.txt 63
