@@ -91,8 +91,8 @@ The Main.java file has the Main class that contains the implementation of the **
 1. int **numOfProcesses** initialized with 0 (used to assign Process IDs)
 2. int **location** initialized with **500** (arbitrary location set for starting allocation of programs at this address, this value can be changed according to the need of the user)
 3. SharkMachine **sharkMachine** (an object of the sharkMachine that will be used to run processes)
-4. Queue<Process> **processQ** implemented as a LinkedList<Process> (This is the Process Queue that all PCBs are loaded to)
-5. Queue<Process> **ReadyToRun** implemented as a LinkedList<Process> (This is the queue used for round-robin scheduling)
+4. Queue\<Process> **processQ** implemented as a LinkedList\<Process> (This is the Process Queue that all PCBs are loaded to)
+5. Queue\<Process> **ReadyToRun** implemented as a LinkedList\<Process> (This is the queue used for round-robin scheduling)
 6. final int **timeQuantum** set to **4** (arbitrary constant set time quantum value to use the context switch and use for round robin scheduling)
 7. int **systemTime** initialized at 0 (to keep track of the system time)
 
@@ -125,53 +125,53 @@ The Shark Machine Programming Language has the following commands:
 
 1. **LDI:** Load Immediate
 
-Syntax: LDI <value>
+Syntax: LDI \<value>
 
-Loads the <value> in the Accumulator
+Loads the \<value> in the Accumulator
 
-1. **ADD:** Addition
+2. **ADD:** Addition
 
-Syntax: ADD <address>
+Syntax: ADD \<address>
 
-Adds value at <address> to the Accumulator
+Adds value at \<address> to the Accumulator
 
-1. **SUB:** Subtract
+3. **SUB:** Subtract
 
-Syntax: SUB <address>
+Syntax: SUB \<address>
 
-Subtracts value at <address> from the Accumulator
+Subtracts value at \<address> from the Accumulator
 
-1. **LDA:** Load Address
+4. **LDA:** Load Address
 
-Syntax: LDA <address>
+Syntax: LDA \<address>
 
-Loads value at <address> to the Accumulator
+Loads value at \<address> to the Accumulator
 
-1. **STR:** Store
+5. **STR:** Store
 
-Syntax: STR <address>
+Syntax: STR \<address>
 
-Store value of the Accumulator at <address>
+Store value of the Accumulator at \<address>
 
-1. **BRH:** Absolute Branch
+6. **BRH:** Absolute Branch
 
-Syntax: BRH <offset>
+Syntax: BRH \<offset>
 
-Branches to current PSIAR + <offset>
+Branches to current PSIAR + \<offset>
 
-1. **CBR:** Conditional Branch
+7. **CBR:** Conditional Branch
 
-Syntax: CBR <offset>
+Syntax: CBR \<offset>
 
-Branches to current PSIAR + <offset> if value in the Accumulator is zero
+Branches to current PSIAR + \<offset> if value in the Accumulator is zero
 
-1. **END:** End Program
+8. **END:** End Program
 
 Syntax: END
 
 Ends the program
 
-1. **YLD:** Yield
+9. **YLD:** Yield
 
 Syntax: YLD
 
