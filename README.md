@@ -91,8 +91,8 @@ The Main.java file has the Main class that contains the implementation of the **
 1. int **numOfProcesses** initialized with 0 (used to assign Process IDs)
 2. int **location** initialized with **500** (arbitrary location set for starting allocation of programs at this address, this value can be changed according to the need of the user)
 3. SharkMachine **sharkMachine** (an object of the sharkMachine that will be used to run processes)
-4. Queue\&lt;Process\&gt; **processQ** implemented as a LinkedList\&lt;Process\&gt; (This is the Process Queue that all PCBs are loaded to)
-5. Queue\&lt;Process\&gt; **ReadyToRun** implemented as a LinkedList\&lt;Process\&gt; (This is the queue used for round-robin scheduling)
+4. Queue<Process> **processQ** implemented as a LinkedList<Process> (This is the Process Queue that all PCBs are loaded to)
+5. Queue<Process> **ReadyToRun** implemented as a LinkedList<Process> (This is the queue used for round-robin scheduling)
 6. final int **timeQuantum** set to **4** (arbitrary constant set time quantum value to use the context switch and use for round robin scheduling)
 7. int **systemTime** initialized at 0 (to keep track of the system time)
 
@@ -107,9 +107,9 @@ The class has the following static functions:
 
 **SharkOS System**
 
-The system opens the file named in the main function that contains the list of the text files that have the programs, and their arrival time into the system. The included file is named &quot;ProgramList.txt.&quot; The file must have all programs with their arrival times in ascending order.
+The system opens the file named in the main function that contains the list of the text files that have the programs, and their arrival time into the system. The included file is named "ProgramList.txt." The file must have all programs with their arrival times in ascending order.
 
-The main then calls the **loadPrograms** function with the filename. The loadProgams function goes through the file by line and splits it into program-file name and arrival time. It then calls the **loadProgram** function which goes through the text file with the program, and calls **loadInstruction** for each line of the program. The loadProgram returns the location at which the next program can be loaded. The control comes back to the loadPrograms which now creates a Process. This process is then added to the **processQ**. This process is looped for all file names in the &quot;ProgramList.txt.&quot;
+The main then calls the **loadPrograms** function with the filename. The loadProgams function goes through the file by line and splits it into program-file name and arrival time. It then calls the **loadProgram** function which goes through the text file with the program, and calls **loadInstruction** for each line of the program. The loadProgram returns the location at which the next program can be loaded. The control comes back to the loadPrograms which now creates a Process. This process is then added to the **processQ**. This process is looped for all file names in the "ProgramList.txt."
 
 The main then calls **StartSystem()** which takes the head of the processQ and adds it to the ReadyToRun queue. It then calls the **runNextProcess()** function. The runNextProcess checks if the ReadyToRun queue is empty, and if it is not, it calls **runProcess()** with the head of the queue.
 
@@ -125,45 +125,45 @@ The Shark Machine Programming Language has the following commands:
 
 1. **LDI:** Load Immediate
 
-Syntax: LDI \&lt;value\&gt;
+Syntax: LDI <value>
 
-Loads the \&lt;value\&gt; in the Accumulator
+Loads the <value> in the Accumulator
 
 1. **ADD:** Addition
 
-Syntax: ADD \&lt;address\&gt;
+Syntax: ADD <address>
 
-Adds value at \&lt;address\&gt; to the Accumulator
+Adds value at <address> to the Accumulator
 
 1. **SUB:** Subtract
 
-Syntax: SUB \&lt;address\&gt;
+Syntax: SUB <address>
 
-Subtracts value at \&lt;address\&gt; from the Accumulator
+Subtracts value at <address> from the Accumulator
 
 1. **LDA:** Load Address
 
-Syntax: LDA \&lt;address\&gt;
+Syntax: LDA <address>
 
-Loads value at \&lt;address\&gt; to the Accumulator
+Loads value at <address> to the Accumulator
 
 1. **STR:** Store
 
-Syntax: STR \&lt;address\&gt;
+Syntax: STR <address>
 
-Store value of the Accumulator at \&lt;address\&gt;
+Store value of the Accumulator at <address>
 
 1. **BRH:** Absolute Branch
 
-Syntax: BRH \&lt;offset\&gt;
+Syntax: BRH <offset>
 
-Branches to current PSIAR + \&lt;offset\&gt;
+Branches to current PSIAR + <offset>
 
 1. **CBR:** Conditional Branch
 
-Syntax: CBR \&lt;offset\&gt;
+Syntax: CBR <offset>
 
-Branches to current PSIAR + \&lt;offset\&gt; if value in the Accumulator is zero
+Branches to current PSIAR + <offset> if value in the Accumulator is zero
 
 1. **END:** End Program
 
@@ -179,20 +179,20 @@ Yields to the next process
 
 The zip file includes 7 txt files.
 
-&quot;ProgramList.txt&quot; is the file where you can specify which programs you want to run, and at what time. Remember to add these in ascending order of arrival times.
+"ProgramList.txt" is the file where you can specify which programs you want to run, and at what time. Remember to add these in ascending order of arrival times.
 
-&quot;AddProg.txt&quot; is a program to sum in the values of all memory contents from 100 to 109, and store the result in 200. For demonstration, values are first stored in 100 through 109.
+"AddProg.txt" is a program to sum in the values of all memory contents from 100 to 109, and store the result in 200. For demonstration, values are first stored in 100 through 109.
 
-&quot;DecrementProg.txt&quot; decrements the value stored in location 201 by one until the result is zero. For demonstration, the value in 201 is set to **85** in the program.
+"DecrementProg.txt" decrements the value stored in location 201 by one until the result is zero. For demonstration, the value in 201 is set to **85** in the program.
 
-&quot;IncrementProg.txt&quot; increments the value stored in location 301 by two until the value
+"IncrementProg.txt" increments the value stored in location 301 by two until the value
 
 has been increased by 20. For demonstration, the value in 301 has been set to **34**.
 
-&quot;Prog.txt&quot; loads a 150, stores it, then subtracts it from a 150. The result is stored in 151.
+"Prog.txt" loads a 150, stores it, then subtracts it from a 150. The result is stored in 151.
 
-&quot;Program.txt&quot; sums three numbers and stores the result.
+"Program.txt" sums three numbers and stores the result.
 
-&quot;Program1.txt&quot; loops subtracting 50 from 100 until the result is 0.
+"Program1.txt" loops subtracting 50 from 100 until the result is 0.
 
-The output is named &quot;SystemLog.txt.&quot; This file contains a log of the system, and a record of each instruction executed and from what process. It also displays memory after every process is finished.
+The output is named "SystemLog.txt." This file contains a log of the system, and a record of each instruction executed and from what process. It also displays memory after every process is finished.
